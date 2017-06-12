@@ -9,6 +9,13 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 20160330
         versionName "0.0.1"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+                abiFilters 'armeabi-v7a'
+            }
+        }
     }
     buildTypes {
         release {
@@ -16,10 +23,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
+
+
+  /*  sourceSets {
         main {
             jniLibs.srcDirs  'src/main/libs'
             jni.srcDirs = []
+        }
+    }*/
+
+    sourceSets {
+        main {
+            //第三方.so库路径
+            jniLibs.srcDirs = ['E:\\DuduWorkSpace\\DjDemo1\\librestreaming\\librestreaming\\libs']
+        }
+    }
+
+    buildToolsVersion '25.0.0'
+
+
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
         }
     }
 }
